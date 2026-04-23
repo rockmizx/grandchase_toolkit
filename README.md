@@ -22,7 +22,7 @@ grandchase_toolkit/
 │   ├── 06_decompile_all.py    ← Decompilar KL → Lua legível
 │   └── pipeline.py            ← Pipeline completo (04→05→06)
 ├── extractor/
-│   └── kom_crypto.py          ← Engine de parsing KOM (V0.1 a V1.0)
+│   └── kom_crypto.py          ← Engine de parsing KOM
 ├── decompiler/
 │   └── ljd_decompiler/        ← Decompilador LJD (KL bytecode)
 ├── docs/
