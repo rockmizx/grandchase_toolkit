@@ -110,7 +110,7 @@ O GrandChase usa 3 algoritmos para proteger os arquivos dentro dos KOMs:
 | Algoritmo | Criptografia | Arquivos |
 |-----------|-------------|----------|
 | **Algo 0** | zlib apenas (sem encriptação) | Maioria dos recursos |
-| **Algo 2** | Blowfish-ECB → zlib | ~92% dos Lua/STG |
+| **Algo 2** | Blowfish-ECB → zlib | ~92% dos assets (.frm, .dds, .p3m) |
 | **Algo 3** | AES-256-CBC → zlib → Blowfish-ECB | ~8% dos Lua (mais novos) |
 
 Para detalhes técnicos, veja `docs/CRYPTO_PIPELINE.md`.
