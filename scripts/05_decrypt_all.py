@@ -433,6 +433,20 @@ def process_directory(input_dir, output_dir, algo3_only=False, name_filter=None,
             stats["decrypted"] += 1
             continue
 
+        # ── AES-256-CBC pipeline (caso raro: dados ainda com AES) ──
+        if ext == '.lua' and len(data) >= 16 and len(data) % 16 == 0:
+            kl_data, aes_pair, bf_idx2 = decrypt_algo3_file(data, cached_aes_pair, cached_bf_indices)
+            if kl_data is not None:
+                with open(out_path, "wb") as f:
+                    f.write(kl_data)
+                if aes_pair:
+                    cached_aes_pair = aes_pair
+                if bf_idx2 > 0:
+                    cached_bf_indices.add(bf_idx2)
+                stats["algo3_ok"] += 1
+                stats["decrypted"] += 1
+                continue
+
         # ── Blowfish-ECB (cobre Algo2, Algo3 pós-extração, e STG) ──
         # O extrator (04_extract_koms.py/kom_crypto.py) já faz AES+zlib
         # para Algo3. Os arquivos aqui precisam apenas de BF-ECB.
@@ -469,20 +483,6 @@ def process_directory(input_dir, output_dir, algo3_only=False, name_filter=None,
                     continue
                 except zlib.error:
                     pass
-
-        # ── AES-256-CBC pipeline (caso raro: dados ainda com AES) ──
-        if ext == '.lua' and len(data) >= 16 and len(data) % 16 == 0:
-            kl_data, aes_pair, bf_idx2 = decrypt_algo3_file(data, cached_aes_pair, cached_bf_indices)
-            if kl_data is not None:
-                with open(out_path, "wb") as f:
-                    f.write(kl_data)
-                if aes_pair:
-                    cached_aes_pair = aes_pair
-                if bf_idx2 > 0:
-                    cached_bf_indices.add(bf_idx2)
-                stats["algo3_ok"] += 1
-                stats["decrypted"] += 1
-                continue
 
         # ── STG com chaves específicas capturadas ──
         if ext == '.stg' and stg_keys:
