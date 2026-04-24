@@ -142,3 +142,11 @@ Inclui assinaturas de bytes para busca automática e histórico de offsets.
   correto com Frida compatível.
 - O decompilador LJD usa um formato customizado de bytecode (KL, não LuaJIT padrão)
   com remapeamento de 97 opcodes.
+
+## Apoie o Projeto
+
+Se este projeto foi útil para você, considere apoiar o desenvolvimento:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support-yellow.svg?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/rockmizx)
+
+Ou acesse diretamente: https://buymeacoffee.com/rockmizx
